@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 180 100% 95%;
+
+    --card: 220 20% 7%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 220 20% 7%;
+    --popover-foreground: 180 100% 95%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 135 100% 50%;
+    --secondary-foreground: 220 20% 4%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 180 20% 60%;
+
+    --accent: 135 100% 50%;
+    --accent-foreground: 220 20% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 40% 15%;
+    --input: 220 15% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 220 20% 6%;
+    --sidebar-foreground: 180 100% 95%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 180 100% 95%;
+    --sidebar-border: 180 40% 15%;
+    --sidebar-ring: 180 100% 50%;
+
+    --neon-cyan: 180 100% 50%;
+    --neon-green: 135 100% 50%;
+    --neon-cyan-glow: 0 0% 0% / 0;
+    --dark-surface: 220 20% 8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  ::selection {
+    background: hsl(180 100% 50% / 0.3);
+    color: hsl(180 100% 95%);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(220 20% 4%);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(180 100% 50% / 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(180 100% 50% / 0.5);
+  }
+}
+
+@layer components {
+  .text-neon-cyan {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 0 0 10px hsl(180 100% 50% / 0.5), 0 0 20px hsl(180 100% 50% / 0.3);
+  }
+
+  .text-neon-green {
+    color: hsl(var(--neon-green));
+    text-shadow: 0 0 10px hsl(135 100% 50% / 0.5), 0 0 20px hsl(135 100% 50% / 0.3);
+  }
+
+  .neon-border {
+    border: 1px solid hsl(180 100% 50% / 0.3);
+    box-shadow: 0 0 10px hsl(180 100% 50% / 0.1), inset 0 0 10px hsl(180 100% 50% / 0.05);
+  }
+
+  .neon-border-green {
+    border: 1px solid hsl(135 100% 50% / 0.3);
+    box-shadow: 0 0 10px hsl(135 100% 50% / 0.1), inset 0 0 10px hsl(135 100% 50% / 0.05);
+  }
+
+  .glass-card {
+    background: hsl(220 20% 7% / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(180 100% 50% / 0.15);
+  }
+
+  .gradient-text-cyan {
+    background: linear-gradient(135deg, hsl(180 100% 50%), hsl(200 100% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-green {
+    background: linear-gradient(135deg, hsl(135 100% 50%), hsl(150 100% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .circuit-bg {
+    background-image: url('/images/circuit-bg.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(180 100% 50%), transparent);
+  }
+
+  .glow-line-green {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(135 100% 50%), transparent);
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 20px hsl(180 100% 50% / 0.3), 0 0 40px hsl(180 100% 50% / 0.1);
+    border-color: hsl(180 100% 50% / 0.5);
+  }
+
+  .nav-link {
+    @apply relative font-heading text-sm tracking-[0.2em] uppercase transition-colors duration-300;
+    color: hsl(var(--muted-foreground));
+  }
+  .nav-link:hover, .nav-link.active {
+    color: hsl(var(--primary));
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] scale-x-0 transition-transform duration-300 origin-right;
+    background: hsl(var(--primary));
+  }
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  .section-title {
+    @apply font-heading text-2xl font-bold tracking-[0.12em] sm:text-3xl md:text-4xl;
+  }
+
+  .scroll-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-left 30s linear infinite;
+  }
+  .scroll-track-reverse {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-right 30s linear infinite;
+  }
+
+  .member-card {
+    @apply glass-card rounded-lg p-4 text-center transition-all duration-300 cursor-pointer;
+  }
+  .member-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px hsl(180 100% 50% / 0.2);
+    border-color: hsl(180 100% 50% / 0.4);
+  }
+
+  .event-card {
+    @apply glass-card rounded-lg overflow-hidden transition-all duration-300;
+  }
+  .event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px hsl(180 100% 50% / 0.15);
+  }
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(180 100% 50%); }
+}
